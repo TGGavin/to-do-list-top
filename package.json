@@ -1,5 +1,5 @@
 {
-  "name": "webpage-template",
+  "name": "to-do-list",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -21,6 +21,7 @@
   "homepage": "https://github.com/TGGavin/webpage-template#readme",
   "devDependencies": {
     "css-loader": "^7.1.2",
+    "date-fns": "^4.1.0",
     "html-loader": "^5.1.0",
     "html-webpack-plugin": "^5.6.4",
     "style-loader": "^4.0.0",
