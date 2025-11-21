@@ -2,13 +2,21 @@ import "./style.css";
 
     const ToDoApp = () => {
         
-        function MakeToDoItem (title) {
-            const titleWrapper = {
-                title,
-                renameTitle: function (newTitle) {
-                    this.title = newTitle
-                }
+        function toDoItem () {
+
+            const MakeToDoItem = (title) => {
+                const toDoObj = {};
+                const renameToDoTitle =  renameTitle.bind(toDoObj);
+                
+                return Object.assign(toDoObj, { title, }, { renameToDoTitle })
+            };
+
+            function renameTitle (newTitle) {
+                this.title = newTitle
+            };
+
+            return {
+                MakeToDoItem,
             }
-            return {titleWrapper}
-        }
-    }
+        };
+    };
