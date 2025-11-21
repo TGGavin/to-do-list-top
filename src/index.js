@@ -4,12 +4,23 @@ import "./style.css";
         
         function toDoItem () {
 
-            const MakeToDoItem = (title, desc) => {
+            const MakeToDoItem = (title, desc, notes) => {
                 const toDoObj = {};
                 const renameToDoTitle =  renameTitle.bind(toDoObj);
                 const rewriteToDoDesc = rewriteDesc.bind(toDoObj);
+                const rewriteToDoNotes = rewriteNotes.bind(toDoObj);
 
-                return Object.assign(toDoObj, { title, desc, }, { renameToDoTitle, rewriteToDoDesc })
+
+                return Object.assign(toDoObj, { 
+                    title, 
+                    desc, 
+                    notes, 
+                }, 
+                { 
+                    renameToDoTitle, 
+                    rewriteToDoDesc, 
+                    rewriteToDoNotes, 
+                })
             };
 
             function renameTitle (newTitle) {
@@ -18,6 +29,10 @@ import "./style.css";
 
             function rewriteDesc (newDesc) {
                 this.desc = newDesc;
+            };
+
+            function rewriteNotes (newNotes) {
+                this.notes = newNotes;
             };
 
             return {
