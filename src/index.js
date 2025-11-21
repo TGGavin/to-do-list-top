@@ -4,24 +4,31 @@ import "./style.css";
         
         function toDoItem () {
 
-            const MakeToDoItem = (title, desc, notes, priority) => {
+            const MakeToDoItem = (title, desc, notes, priority, progress) => {
+                if (typeof progress !== "boolean") {
+                    console.error("progress parameter must be boolean")
+                }
+
                 const toDoObj = {};
                 const renameToDoTitle =  renameTitle.bind(toDoObj);
                 const rewriteToDoDesc = rewriteDesc.bind(toDoObj);
                 const rewriteToDoNotes = rewriteNotes.bind(toDoObj);
                 const setToDoPriority = setPriority.bind(toDoObj);
+                const updateToDoProgress = updateProgress.bind(toDoObj);
 
                 return Object.assign(toDoObj, { 
                     title, 
                     desc, 
                     notes,
                     priority,
+                    progress
                 }, 
                 { 
                     renameToDoTitle, 
                     rewriteToDoDesc, 
                     rewriteToDoNotes,
                     setToDoPriority,
+                    updateToDoProgress,
                 })
             };
 
@@ -41,8 +48,13 @@ import "./style.css";
                 this.priority = newPriority;
             };
 
+            function updateProgress () {
+                this.progress = !this.progress
+            }
+
             return {
                 MakeToDoItem,
             }
+            
         };
     };
