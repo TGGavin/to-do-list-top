@@ -6,7 +6,7 @@ import "./style.css";
 
             const MakeToDoItem = (title, desc, notes, priority, progress) => {
                 if (typeof progress !== "boolean") {
-                    console.error("progress parameter must be boolean")
+                    throw new Error("Progress parameter must be set in boolean")
                 }
 
                 const toDoObj = {};
