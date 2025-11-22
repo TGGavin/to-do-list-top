@@ -44,30 +44,6 @@ const { formatDistance } = require("date-fns");
                 }
             };
 
-            function renameTitle (newTitle) {
-                this.title = newTitle;
-            };
-
-            function rewriteDesc (newDesc) {
-                this.desc = newDesc;
-            };
-
-            function rewriteNotes (newNotes) {
-                this.notes = newNotes;
-            };
-
-            function setPriority (newPriority) {
-                this.priority = newPriority;
-            };
-
-            function updateProgress () {
-                this.progress = !this.progress
-            }
-
-            function updateDates (newDueDate) {
-                this.dates = MakeToDoDates(newDueDate);
-            }
-
             function MakeToDoDates (dueDate) {
                 const itemTOC = new Date();
                 const itemDueDate = new Date(dueDate);
@@ -108,6 +84,30 @@ const { formatDistance } = require("date-fns");
                     getToDos,
                 }
             }
+        }
+
+        function renameTitle (newTitle) {
+            this.title = newTitle;
+        };
+
+        function rewriteDesc (newDesc) {
+            this.desc = newDesc;
+        };
+
+        function rewriteNotes (newNotes) {
+            this.notes = newNotes;
+        };
+
+        function setPriority (newPriority) {
+            this.priority = newPriority;
+        };
+
+        function updateProgress () {
+            this.progress = !this.progress
+        }
+
+        function updateDates (newDueDate) {
+            this.dates = MakeToDoDates(newDueDate);
         }
 
     };
