@@ -5,13 +5,13 @@ const { formatDistance } = require("date-fns");
         
         function ToDoItemHandler () {
 
-            const MakeToDoItem = (title, desc, notes, priority, progress, dueDate) => {
+            const MakeToDoItem = (title, desc, notes, priority, dueDate) => {
                 const toDoItem = {
                     title,
                     desc,
                     notes,
                     priority,
-                    progress,
+                    progress: false,
                     dates: MakeToDoDates(dueDate),
                 };
 
