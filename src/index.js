@@ -11,7 +11,7 @@ const { formatDistance } = require("date-fns");
                 }
                 const toDoObj = {};
 
-                const toDoDates = GetToDoDates(dueDate)
+                const toDoDates = MakeToDoDates(dueDate)
 
                 const renameToDoTitle =  renameTitle.bind(toDoObj);
                 const rewriteToDoDesc = rewriteDesc.bind(toDoObj);
@@ -59,10 +59,10 @@ const { formatDistance } = require("date-fns");
             }
 
             function updateDates (newDueDate) {
-                this.toDoDates = GetToDoDates(newDueDate);
+                this.toDoDates = MakeToDoDates(newDueDate);
             }
 
-            function GetToDoDates (dueDate) {
+            function MakeToDoDates (dueDate) {
                 const itemTOC = new Date();
                 const itemDueDate = new Date(dueDate);
                 const timeUntilDue = formatDistance(itemDueDate, itemTOC);
