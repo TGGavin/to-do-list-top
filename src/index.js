@@ -3,39 +3,45 @@ const { formatDistance } = require("date-fns");
 
     const ToDoApp = () => {
         
-        function toDoItem () {
+        function ToDoItemHandler () {
 
             const MakeToDoItem = (title, desc, notes, priority, progress, dueDate) => {
-                if (typeof progress !== "boolean") {
-                    throw new Error("Progress parameter must be set in boolean")
-                }
-                const toDoObj = {};
-
-                const toDoDates = MakeToDoDates(dueDate)
-
-                const renameToDoTitle =  renameTitle.bind(toDoObj);
-                const rewriteToDoDesc = rewriteDesc.bind(toDoObj);
-                const rewriteToDoNotes = rewriteNotes.bind(toDoObj);
-                const setToDoPriority = setPriority.bind(toDoObj);
-                const updateToDoProgress = updateProgress.bind(toDoObj);
-                const updateToDoDates = updateDates.bind(toDoObj);
-
-                return Object.assign(toDoObj, { 
-                    title, 
-                    desc, 
+                const toDoItem = {
+                    title,
+                    desc,
                     notes,
                     priority,
                     progress,
-                    toDoDates,
-                }, 
-                { 
-                    renameToDoTitle, 
-                    rewriteToDoDesc, 
-                    rewriteToDoNotes,
-                    setToDoPriority,
-                    updateToDoProgress,
-                    updateToDoDates,
-                })
+                    dates: MakeToDoDates(dueDate),
+                };
+
+                const getTitle = () => toDoItem.title;
+
+                const getDesc = () => toDoItem.desc;
+
+                const getNotes = () => toDoItem.notes;
+
+                const getPriority = () => toDoItem.priority;
+
+                const getProgress = () => toDoItem.progress;
+
+                const getDates = () => toDoItem.dates;
+
+                const renameToDoTitle =  renameTitle.bind(toDoItem);
+                const rewriteToDoDesc = rewriteDesc.bind(toDoItem);
+                const rewriteToDoNotes = rewriteNotes.bind(toDoItem);
+                const setToDoPriority = setPriority.bind(toDoItem);
+                const updateToDoProgress = updateProgress.bind(toDoItem);
+                const updateToDoDates = updateDates.bind(toDoItem);
+
+                return  {
+                    getTitle, renameToDoTitle,
+                    getDesc, rewriteToDoDesc, 
+                    getNotes, rewriteToDoNotes,
+                    getPriority, setToDoPriority,
+                    getProgress, updateToDoProgress,
+                    getDates, updateToDoDates,
+                }
             };
 
             function renameTitle (newTitle) {
@@ -59,7 +65,7 @@ const { formatDistance } = require("date-fns");
             }
 
             function updateDates (newDueDate) {
-                this.toDoDates = MakeToDoDates(newDueDate);
+                this.dates = MakeToDoDates(newDueDate);
             }
 
             function MakeToDoDates (dueDate) {
@@ -80,4 +86,5 @@ const { formatDistance } = require("date-fns");
             }
             
         };
+
     };
