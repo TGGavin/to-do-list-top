@@ -3,6 +3,8 @@ const { formatDistance } = require("date-fns");
 
     const ToDoApp = () => {
         
+        const toDoLists = [];
+        
         function ToDoItemHandler () {
 
             const MakeToDoItem = (title, desc, notes, priority, dueDate) => {
