@@ -78,12 +78,16 @@ const { formatDistance } = require("date-fns");
 
                 const getToDos = () => list.toDos;
 
+                const renameList = renameTitle.bind(list);
+                const reWriteListDesc = rewriteDesc.bind(list);
+                
                 return {
-                    getTitle,
-                    getDesc,
+                    getTitle, renameList,
+                    getDesc, reWriteListDesc,
                     getToDos,
                 }
             }
+            return { MakeList }
         }
 
         function renameTitle (newTitle) {
