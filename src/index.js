@@ -87,4 +87,27 @@ const { formatDistance } = require("date-fns");
             
         };
 
+        function ListHandler () {
+            
+            function MakeList (title, desc) {
+                const list = {
+                    title,
+                    desc,
+                    toDos: [],
+                }
+
+                const getTitle = () => list.title;
+
+                const getDesc = () => list.desc;
+
+                const getToDos = () => list.toDos;
+
+                return {
+                    getTitle,
+                    getDesc,
+                    getToDos,
+                }
+            }
+        }
+
     };
