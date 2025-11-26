@@ -123,4 +123,20 @@ const { formatDistance } = require("date-fns");
             this.dates = MakeToDoDates(newDueDate);
         }
 
+        function AddList (title, desc) {
+        toDoLists.push(listHandler.MakeList(title, desc))
+        }
+
+        function AddItemToList (list, title, desc, notes, priority, dueDate) {
+        toDoLists[list].addToDo(itemHandler.MakeToDoItem(title, desc, notes, priority, dueDate))
+        }
+
+        // inital list creation
+        AddList("Daily Chores", "Tasks to be done every day");        
+
+        const itemHandler = ToDoItemHandler();
+        const listHandler = ListHandler();
+
     };
+
+ToDoApp();
