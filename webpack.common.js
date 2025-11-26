@@ -13,4 +13,20 @@
      path: path.resolve(__dirname, 'dist'),
      clean: true,
    },
+    module: {
+      rules: [
+          {
+              test: /\.css$/i,
+              use: ["style-loader", "css-loader"],
+          },
+          {
+              test: /\.(png|jpg|jpeg|gif|svg)$/i,
+              type: "asset/resource", 
+          },
+          {
+              test: /\.html$/i,
+              loader: "html-loader",
+          },
+      ],
+    },
  };
