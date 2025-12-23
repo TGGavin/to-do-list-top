@@ -132,11 +132,11 @@ const { formatDistance } = require("date-fns");
         }
 
         // inital list creation
-        AddList("Daily Chores", "Tasks to be done every day");        
-
+        
         const itemHandler = ToDoItemHandler();
         const listHandler = ListHandler();
 
+        AddList("Daily Chores", "Tasks to be done every day");        
     };
 
 ToDoApp();
