@@ -1,5 +1,5 @@
 import "./style.css";
-const { formatDistance } = require("date-fns");
+const { formatDistance, isAfter } = require("date-fns");
 
     const ToDoApp = () => {
         
@@ -8,13 +8,15 @@ const { formatDistance } = require("date-fns");
         function ToDoItemHandler () {
 
             const MakeToDoItem = (title, desc, notes, priority, dueDate) => {
+                const dateMade = new Date();
                 const toDoItem = {
                     title,
                     desc,
                     notes,
                     priority,
                     progress: false,
-                    dates: MakeToDoDates(dueDate),
+                    dateMade,
+                    dueDate: MakeDueDates(dueDate, dateMade),
                 };
 
                 const getTitle = () => toDoItem.title;
@@ -27,7 +29,7 @@ const { formatDistance } = require("date-fns");
 
                 const getProgress = () => toDoItem.progress;
 
-                const getDates = () => toDoItem.dates;
+                const getDueDate = () => toDoItem.dueDate;
 
                 const renameToDoTitle =  renameTitle.bind(toDoItem);
                 const rewriteToDoDesc = rewriteDesc.bind(toDoItem);
@@ -42,21 +44,26 @@ const { formatDistance } = require("date-fns");
                     getNotes, rewriteToDoNotes,
                     getPriority, setToDoPriority,
                     getProgress, updateToDoProgress,
-                    getDates, updateToDoDates,
+                    getDueDate, updateToDoDates,
                 }
             };
 
-            function MakeToDoDates (dueDate) {
-                const itemTOC = new Date();
-                const itemDueDate = new Date(dueDate);
-                const timeUntilDue = formatDistance(itemDueDate, itemTOC);
-                return {
-                    itemTOC,
-                    itemDueDate,
-                    timeUntilDue,
+            function MakeDueDates (dueDate, dateMade) {
+                if (isDate(dueDate)) {
+                    const itemDueDate = new Date(dueDate);
+                    const timeUntilDue = formatDistance(itemDueDate, dateMade);
+
+                    if (!isAfter(dueDate, dateMade)) {
+                        throw Error(`dueDate:${dueDate} must be after to do item creation date:${dateMade}`)
+                    }
+
+                    return {
+                        itemDueDate,
+                        timeUntilDue,
+                    }
+                }   else {
+                    return "No due date"
                 }
-                
-                
             };
 
             return {
@@ -143,10 +150,7 @@ const { formatDistance } = require("date-fns");
         const listHandler = ListHandler();
 
         AddList("Daily Chores", "Tasks to be done every day")
-        AddItemToList(0, "Dishes", "do them", "none", 1, "2026-1-2")
-
-        // console.log(toDoLists[0].getToDos()[0].getDates())
-        // console.log(toDoLists)
+        AddItemToList(0, "Dishes", "do them", "none", 1, "2026-12-12")
 
     };
 
