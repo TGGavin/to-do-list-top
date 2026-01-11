@@ -1,5 +1,6 @@
 import "./style.css";
 import WebStorage from "./webstorage.js";
+import UIHandler from "./ToDoUI.js"
 
 const dateFuncs = require("date-fns");
 const { formatDistance, isAfter } = dateFuncs
@@ -52,7 +53,7 @@ const { formatDistance, isAfter } = dateFuncs
                         getPriority, setToDoPriority,
                         getProgress, updateToDoProgress,
                         getDueDate, updateToDoDates,
-                    }
+                    };
                 };
                 
                 function MakeDueDates (dueDate, dateMade) {
@@ -61,21 +62,21 @@ const { formatDistance, isAfter } = dateFuncs
                         const timeUntilDue = formatDistance(itemDueDate, dateMade);
                         
                         if (!isAfter(dueDate, dateMade)) {
-                            throw Error(`dueDate:${dueDate} must be after to do item creation date:${dateMade}`)
-                        }
-                        
+                            throw Error(`dueDate:${dueDate} must be after to do item creation date:${dateMade}`);
+                        };
+            
                         return {
                             itemDueDate,
                             timeUntilDue,
-                        }
+                        };
                     }   else {
-                        return "No due date"
-                    }
+                        return "No due date";
+                    };
                 };
                 
                 return {
                     MakeToDoItem,
-                }
+                };
                 
             };
             
@@ -86,7 +87,7 @@ const { formatDistance, isAfter } = dateFuncs
                         title,
                         desc,
                         toDos: [],
-                    }
+                    };
                     
                     const getTitle = () => list.title;
                     
@@ -103,74 +104,74 @@ const { formatDistance, isAfter } = dateFuncs
                         getTitle, renameList,
                         getDesc, reWriteListDesc,
                         getToDos, addToDo,
-                    }
-                }
-                
+                    };
+                };
+            
                 function addItem (item) {
                     this.toDos.push(item);
-                }
-                
-                return { MakeList }
-            }
+                };
             
+            return { MakeList };
+            };
+        
             function renameTitle (newTitle) {
                 this.title = newTitle;
             };
             
             function rewriteDesc (newDesc) {
                 this.desc = newDesc;
-        };
-        
-        function rewriteNotes (newNotes) {
-            this.notes = newNotes;
-        };
-        
-        function setPriority (newPriority) {
-            this.priority = newPriority;
-        };
-        
-        function updateProgress () {
-            this.progress = !this.progress
-        }
-        
-        function updateDates (newDueDate) {
-            this.dates = MakeToDoDates(newDueDate);
-        }
-        
-        function isDate(string) {
-            let dateExp = /^\d{4}-\d{1,2}-\d{1,2}$/
+            };
             
-            return dateExp.test(string)
-        }
-        
-        const itemHandler = ToDoItemHandler();
-        const listHandler = ListHandler();
+            function rewriteNotes (newNotes) {
+                this.notes = newNotes;
+            };
+            
+            function setPriority (newPriority) {
+                this.priority = newPriority;
+            };
+            
+            function updateProgress () {
+                this.progress = !this.progress
+            };
+            
+            function updateDates (newDueDate) {
+                this.dates = MakeToDoDates(newDueDate);
+            };
+            
+            function isDate(string) {
+                let dateExp = /^\d{4}-\d{1,2}-\d{1,2}$/;
+                
+                return dateExp.test(string);
+            };
+            
+            const itemHandler = ToDoItemHandler();
+            const listHandler = ListHandler();
 
-        function AddList (title, desc) {
-            toDoLists.push(listHandler.MakeList(title, desc))
-        }
-        
-        function AddItemToList (list, title, desc, notes, priority, dueDate) {
-            toDoLists[list].addToDo(itemHandler.MakeToDoItem(title, desc, notes, priority, dueDate))
-        }
+            function AddList (title, desc) {
+                toDoLists.push(listHandler.MakeList(title, desc))
+            };
+            
+            function AddItemToList (list, title, desc, notes, priority, dueDate) {
+                toDoLists[list].addToDo(itemHandler.MakeToDoItem(title, desc, notes, priority, dueDate))
+            };
 
-        return {
-            AddList,
-            AddItemToList,
-            getLists,
-        }
-    }
+            return {
+                AddList,
+                AddItemToList,
+                getLists,
+            };
+        };
         
     const appHandler = () => {
         // list initalisation
         const logic = ToDoLogic();
         
-        logic.AddList("Daily Chores", "Tasks to be done every day")
-        logic.AddItemToList(0, "Dishes", "do them", "none", 1, "2026-12-12")
+        logic.AddList("Daily Chores", "Tasks to be done every day");
+        logic.AddItemToList(0, "Dishes", "do them", "none", 1, "2026-12-12");
 
     }
 
-    appHandler()
+    appHandler();
 
     };
 
