@@ -1,6 +1,5 @@
 import "./style.css";
 import WebStorage from "./webstorage.js";
-import DOMHandler from "./frontend.js"
 
 const dateFuncs = require("date-fns");
 const { formatDistance, isAfter } = dateFuncs
@@ -161,7 +160,7 @@ const { formatDistance, isAfter } = dateFuncs
                 getLists,
             };
         };
-        
+
     const appHandler = () => {
         // list initalisation
         const logic = ToDoLogic();
