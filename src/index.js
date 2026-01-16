@@ -1,6 +1,6 @@
 import "./style.css";
 import WebStorage from "./webstorage.js";
-import UIHandler from "./ToDoUI.js"
+import DOMHandler from "./frontend.js"
 
 const dateFuncs = require("date-fns");
 const { formatDistance, isAfter } = dateFuncs
