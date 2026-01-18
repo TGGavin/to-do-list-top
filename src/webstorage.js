@@ -1,4 +1,7 @@
 function WebStorage () {
+    function populateStorage () {
+        
+    }
 
 }
 
