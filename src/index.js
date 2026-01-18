@@ -161,9 +161,32 @@ const { formatDistance, isAfter } = dateFuncs
             };
         };
 
+    function DOMHandler() {
+        const body = document.querySelector("body")
+
+        function toDoUI() {
+            const fragment = new DocumentFragment();
+            const elements = [];
+
+            const appContainer = document.createElement("div");
+            fragment.append(appContainer);
+            
+            for (const element of elements) {
+                fragment.append(element);
+            };
+
+            body.append(fragment);
+        };
+        return {
+            toDoUI
+        }
+    };
+
     const appHandler = () => {
         // list initalisation
         const logic = ToDoLogic();
+        const UI = DOMHandler();
+        UI.toDoUI();
         
         logic.AddList("Daily Chores", "Tasks to be done every day");
         logic.AddItemToList(0, "Dishes", "do them", "none", 1, "2026-12-12");
